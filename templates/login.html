@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="auth-card">
+    <h2>შესვლა</h2>
+    <p class="muted">გაგრძელებისთვის შეიყვანე შენი მონაცემები.</p>
+    <form action="{{ url_for('login') }}" method="post" class="form-stack">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div>
+        <label>ელფოსტა</label>
+        <input name="email" type="email" placeholder="თქვენი ელფოსტა" required />
+      </div>
+      <div>
+        <label>პაროლი</label>
+        <input name="password" type="password" placeholder="პაროლი" required />
+      </div>
+      <button type="submit" class="btn btn-primary full">შესვლა</button>
+      <p class="muted center">
+        არ გაქვს ანგარიში?
+        <a href="{{ url_for('register') }}" class="link">რეგისტრაცია</a>
+      </p>
+    </form>
+  </section>
+{% endblock %}

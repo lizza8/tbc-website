@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="feed-layout">
+    <aside class="sidebar">
+      <div class="card">
+        <h3>თემები</h3>
+        <div class="list">
+          <a href="{{ url_for('feed') }}" class="{{ 'active' if not subject else '' }}">ყველა</a>
+          {% for category in categories %}
+            <a
+              href="{{ url_for('feed', subject=category.name) }}"
+              class="{{ 'active' if subject == category.name else '' }}"
+            >{{ category.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>სწრაფი ძიება</h3>
+        <form action="{{ url_for('search') }}" method="get" class="search-bar compact">
+          <input name="q" type="text" placeholder="თემა, ოლიმპიადა ან კითხვა" />
+          <button class="btn btn-primary" type="submit">ძიება</button>
+        </form>
+      </div>
+
+      {% if current_user.is_authenticated %}
+        <a href="{{ url_for('new_post') }}" class="btn btn-secondary full">პოსტის დამატება</a>
+      {% endif %}
+    </aside>
+
+    <section class="feed">
+      {% for post in posts %}
+        <article class="card lift">
+          <div class="feed-meta">
+            <span class="tag">{{ post.subject }}</span>
+            <span>{{ post.created_at.strftime('%d.%m.%Y') }}</span>
+          </div>
+          <h3>
+            <a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a>
+          </h3>
+          <p class="muted">{{ post.content }}</p>
+          <div class="meta">ავტორი: {{ post.author.name }}</div>
+        </article>
+      {% else %}
+        <div class="card muted">პოსტები ჯერ არ არის.</div>
+      {% endfor %}
+    </section>
+  </section>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="form-card">
+    <div class="form-header">
+      <h2>ახალი პოსტი</h2>
+      <p class="muted">გააზიარე სასწავლო გამოცდილება, რესურსი ან რჩევა.</p>
+    </div>
+    <form action="{{ url_for('new_post') }}" method="post" enctype="multipart/form-data" class="form-grid">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div>
+        <label>სათაური</label>
+        <input name="title" type="text" placeholder="პოსტის სათაური" required />
+      </div>
+      <div class="full">
+        <label>ტექსტი</label>
+        <textarea name="content" rows="6" placeholder="რა ისწავლე დღეს?" required></textarea>
+      </div>
+      <div>
+        <label>თემა</label>
+        <select name="subject" required>
+          <option value="">აირჩიე თემა</option>
+          {% for category in categories %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label>რესურსის ბმული</label>
+        <input name="resource_link" type="url" placeholder="ბმულის მისამართი" />
+      </div>
+      <div class="full">
+        <label>ფაილის ატვირთვა</label>
+        <input name="resource_file" type="file" />
+        <p class="hint">შეიძლება ატვირთო PDF, DOCX, PPTX ან სურათი.</p>
+      </div>
+      <button type="submit" class="btn btn-primary">პოსტის დამატება</button>
+    </form>
+  </section>
+{% endblock %}

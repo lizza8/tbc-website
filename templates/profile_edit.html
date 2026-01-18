@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="form-card">
+    <div class="form-header">
+      <h2>პროფილის რედაქტირება</h2>
+      <p class="muted">განაახლე აკადემიური ისტორია და პროექტები.</p>
+    </div>
+    <form action="{{ url_for('profile_edit') }}" method="post" class="form-grid">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div class="full">
+        <label>ბიო</label>
+        <textarea name="bio" rows="4" placeholder="მოკლე აღწერა">{{ current_user.bio }}</textarea>
+      </div>
+      <div>
+        <label>აკადემიური მიღწევები</label>
+        <textarea name="achievements" rows="4" placeholder="ოლიმპიადები, კონკურსები">{{ current_user.achievements }}</textarea>
+      </div>
+      <div>
+        <label>ჩემი პროექტები</label>
+        <textarea name="projects" rows="4" placeholder="პროექტების სია">{{ current_user.projects }}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">შენახვა</button>
+    </form>
+  </section>
+{% endblock %}

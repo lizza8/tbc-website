@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="messages">
+    <div class="card">
+      <h2>შემოსული შეტყობინებები</h2>
+      <div class="stack">
+        {% for message in inbox %}
+          <div class="message-card">
+            <div class="message-meta">
+              <span>{{ message.sender.name }}</span>
+              <span>{{ message.created_at.strftime('%d.%m.%Y %H:%M') }}</span>
+            </div>
+            <p>{{ message.content }}</p>
+          </div>
+        {% else %}
+          <p class="muted">შეტყობინებები ჯერ არ გაქვს.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>ახალი შეტყობინება</h2>
+      <form action="{{ url_for('send_message') }}" method="post" class="form-stack">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <div>
+          <label>მიმღები</label>
+          <select name="receiver_id" required>
+            <option value="">აირჩიე სტუდენტი</option>
+            {% for user in users %}
+              <option value="{{ user.id }}">{{ user.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div>
+          <label>ტექსტი</label>
+          <textarea name="content" rows="4" placeholder="შენი შეტყობინება" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">გაგზავნა</button>
+      </form>
+    </div>
+  </section>
+{% endblock %}

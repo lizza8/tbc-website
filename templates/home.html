@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="hero">
+    <div class="hero-content">
+      <p class="badge">EduConnect</p>
+      <h1>სწავლა უფრო მარტივია, როცა იცი სად ისწავლო</h1>
+      <p class="lead">
+        პლატფორმა, სადაც მოსწავლეები სწავლობენ ერთად: აზიარებენ რესურსებს, 
+        პროექტებს და ოლიმპიადებისთვის გამოცდილებას.
+      </p>
+      <div class="hero-actions">
+        <form action="{{ url_for('search') }}" method="get" class="search-bar">
+          <input type="text" name="q" placeholder="რა თემას ეძებ?" />
+          <button type="submit" class="btn btn-primary">ძიება</button>
+        </form>
+        {% if current_user.is_authenticated %}
+          <a href="{{ url_for('new_post') }}" class="btn btn-ghost">პოსტის დამატება</a>
+        {% else %}
+          <a href="{{ url_for('register') }}" class="btn btn-secondary">დაიწყე ახლა</a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>აკადემიური მიზნები ერთ სივრცეში</h3>
+      <ul>
+        <li>თემატური ფიდი მხოლოდ საგნობრივი კონტენტით</li>
+        <li>სასარგებლო რესურსების სწრაფი გაზიარება</li>
+        <li>ბიო, მიღწევები და პროექტები სტუდენტურ პროფილში</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-title">
+      <h2>გამორჩეული პოსტები</h2>
+      <a href="{{ url_for('feed') }}">ყველას ნახვა</a>
+    </div>
+    <div class="grid">
+      {% for post in posts %}
+        <article class="card lift">
+          <div class="tag">{{ post.subject }}</div>
+          <h3>
+            <a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a>
+          </h3>
+          <p class="muted">{{ post.content }}</p>
+          <div class="meta">ავტორი: {{ post.author.name }}</div>
+        </article>
+      {% else %}
+        <p class="muted">ჯერ პოსტები არ არის დამატებული.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="section accent">
+    <h3>მნიშვნელოვანი თემები</h3>
+    <div class="tags">
+      {% for category in categories %}
+        <a href="{{ url_for('feed', subject=category.name) }}" class="tag">
+          {{ category.name }}
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

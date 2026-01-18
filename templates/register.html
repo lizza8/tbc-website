@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="auth-card wide">
+    <h2>რეგისტრაცია</h2>
+    <p class="muted">შექმენი პროფილი და დაიწყე აკადემიური გაზიარება.</p>
+    <form action="{{ url_for('register') }}" method="post" class="form-grid">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+      <div>
+        <label>სახელი და გვარი</label>
+        <input name="name" type="text" placeholder="თქვენი სახელი" required />
+      </div>
+      <div>
+        <label>ელფოსტა</label>
+        <input name="email" type="email" placeholder="თქვენი ელფოსტა" required />
+      </div>
+      <div>
+        <label>სკოლა ან უნივერსიტეტი</label>
+        <input name="school" type="text" placeholder="საგანმანათლებლო დაწესებულება" required />
+      </div>
+      <div>
+        <label>ინტერესები</label>
+        <input name="interests" type="text" placeholder="მაგ: ფიზიკა, პროგრამირება" />
+      </div>
+      <div>
+        <label>პაროლი</label>
+        <input name="password" type="password" placeholder="პაროლი" required />
+      </div>
+      <div>
+        <label>დაადასტურე პაროლი</label>
+        <input name="confirm" type="password" placeholder="გაიმეორე პაროლი" required />
+      </div>
+      <button type="submit" class="btn btn-primary full">რეგისტრაცია</button>
+      <p class="muted center full">
+        უკვე გაქვს ანგარიში?
+        <a href="{{ url_for('login') }}" class="link">შესვლა</a>
+      </p>
+    </form>
+  </section>
+{% endblock %}

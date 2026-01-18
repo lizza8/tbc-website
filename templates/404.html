@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="error-page">
+    <h1>404</h1>
+    <p>ეს გვერდი ვერ მოიძებნა. სცადე მთავარ გვერდზე დაბრუნება.</p>
+    <a href="{{ url_for('home') }}" class="btn btn-primary">მთავარზე დაბრუნება</a>
+  </section>
+{% endblock %}

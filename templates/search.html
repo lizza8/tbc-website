@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="card search-card">
+    <form action="{{ url_for('search') }}" method="get" class="search-bar">
+      <input name="q" type="text" value="{{ term }}" placeholder="თემა, ოლიმპიადა ან საკვანძო სიტყვა" />
+      <button class="btn btn-primary" type="submit">ძიება</button>
+    </form>
+  </section>
+
+  <section class="section">
+    {% if term %}
+      <h2>ძიების შედეგები: "{{ term }}"</h2>
+    {% else %}
+      <h2>შეიყვანე საკვანძო სიტყვა</h2>
+    {% endif %}
+    <div class="stack">
+      {% for post in posts %}
+        <article class="card lift">
+          <div class="tag">{{ post.subject }}</div>
+          <h3>
+            <a href="{{ url_for('post_detail', post_id=post.id) }}">{{ post.title }}</a>
+          </h3>
+          <p class="muted">{{ post.content }}</p>
+        </article>
+      {% else %}
+        {% if term %}
+          <p class="muted">შედეგები ვერ მოიძებნა.</p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

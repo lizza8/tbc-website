@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="profile-header">
+    <div>
+      <h2>{{ user.name }}</h2>
+      <p class="muted">{{ user.school }}</p>
+      {% if user.interests %}
+        <p class="muted">ინტერესები: {{ user.interests }}</p>
+      {% endif %}
+    </div>
+    {% if current_user.is_authenticated and current_user.id == user.id %}
+      <a href="{{ url_for('profile_edit') }}" class="btn btn-secondary">პროფილის რედაქტირება</a>
+    {% endif %}
+  </section>
+
+  <section class="grid">
+    <div class="card lift">
+      <h3>ბიო</h3>
+      <p>{{ user.bio or "ბიოგრაფია ჯერ არ არის დამატებული." }}</p>
+    </div>
+    <div class="card lift">
+      <h3>აკადემიური მიღწევები</h3>
+      <p class="pre">{{ user.achievements or "მიღწევები ჯერ არ არის ჩამოთვლილი." }}</p>
+    </div>
+    <div class="card lift wide">
+      <h3>ჩემი პროექტები</h3>
+      <p class="pre">{{ user.projects or "პროექტები ჯერ არ არის ჩამოთვლილი." }}</p>
+    </div>
+  </section>
+{% endblock %}
