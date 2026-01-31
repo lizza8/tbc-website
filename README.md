@@ -14,7 +14,7 @@ EduConnect is a focused academic social platform for Georgian students, centered
 - პირადი შეტყობინებები / Private messages  
  
 ## ადგილობრივი გაშვება / Local setup
-
+ 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
