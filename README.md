@@ -2,7 +2,7 @@
 
 EduConnect არის სპეციალიზებული სოციალური პლატფორმა ქართული სტუდენტებისთვის, რომელიც ეხმარება აკადემიურ ქსელირებას, რესურსების გაზიარებას და ოლიმპიადებისთვის/პროექტებისთვის მომზადებას.    
  
-EduConnect is a focused academic social platform for Georgian students, centered on networking, resource sharing, and preparation for olympiads and projects.          
+EduConnect is a focused academic social platform for Georgian students, centered on networking, resource sharing, and preparation for olympiads and projects.           
 
 ## ფუნქციები / Features 
  
