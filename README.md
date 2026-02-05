@@ -4,7 +4,7 @@ EduConnect არის სპეციალიზებული სოცი�
  
 EduConnect is a focused academic social platform for Georgian students, centered on networking, resource sharing, and preparation for olympiads and projects.            
 
-## ფუნქციები / Features 
+## ფუნქციები / Features  
   
 - ავთენტიფიკაცია (რეგისტრაცია/შესვლა) / Authentication (sign up/login)     
 - თემატური პოსტები და ფილტრები / Subject-based posts & filter   
