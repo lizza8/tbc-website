@@ -10,7 +10,7 @@ EduConnect is a focused academic social platform for Georgian students, centered
 - თემატური პოსტები და ფილტრები / Subject-based posts & filter   
 - კომენტარები / Comments  
 - აკადემიური პროფილები (მიღწევები და პროექტები) / Academic profiles   
-- რესურსების ბმულები და ფაილების ატვირთვა / Resource links & uploads      
+- რესურსების ბმულები და ფაილების ატვირთვა / Resource links & uploads       
 - პირადი შეტყობინებები / Private messages     
   
 ## ადგილობრივი გაშვება / Local setup  
